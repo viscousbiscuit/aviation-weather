@@ -8,7 +8,7 @@ import { MetarEndpoint } from './endpoints/metar';
 const app = express();
 
 app.get('/', function (req, res) {
-    res.send('Hello World')
+    res.send('Hello bWorld')
 })
 
 app.get("/metar", (req, res) => {

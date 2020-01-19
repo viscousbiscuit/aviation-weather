@@ -1,8 +1,15 @@
 import { SkyCondition } from '../models/skycondition';
 import { Metar } from '../models/metar';
 import { Request, Response } from 'express';
+import { of, observable } from "rxjs";
+import { ajax } from "rxjs/ajax";
+import { XMLHttpRequest } from 'xmlhttprequest'
+import { map, catchError } from "rxjs/operators";
+
 var parseString = require('xml2js').parseString;
 const https = require("https");
+
+
 
 var parseString = require('xml2js').parseString;
 
@@ -14,7 +21,9 @@ export class MetarEndpoint {
 
     public GetMetar(httpRequest: Request, httpResponse: Response) {
 
+
         var metarEndpoint = this.metarInfoStr(1, ["KWHP", "KVNY"]);
+        /*
         var response = '';  
         https.get(metarEndpoint,
         (res) => {
@@ -31,7 +40,20 @@ export class MetarEndpoint {
                 });
             })
         });
+        */
+
+        const obs$ = ajax({
+            createXHR: () => { return new XMLHttpRequest() },
+            url: metarEndpoint,
+            method: 'GET'
+        })
+            .pipe(
+                map(response => {
+                    console.log(response);
+                })
+            );
     }
+
 
     /*
           https.get(metarEndpoint),
