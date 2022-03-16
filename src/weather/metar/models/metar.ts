@@ -1,4 +1,4 @@
-import { SkyCondition } from './skycondition';
+import { SkyCondition } from './skycondition.js';
 
 export class Metar {
     RawText : string;
