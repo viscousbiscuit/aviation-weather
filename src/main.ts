@@ -1,5 +1,7 @@
 import { MetarService } from "./weather/metar/metar.service.js";
 import {Parser} from 'xml2js';
+import { mapMetar } from "./weather/metar/mappers/metar-mapper.js";
+
 
 
 
@@ -14,9 +16,16 @@ const ms = new MetarService();
 
 ms.getMetar(1, ['KBUR']).then((value) => {
 
-  jsonParser.parseString(value.data, (err, result) => {
-    console.log(result.response.data[0]);
-    console.log(err);
+  jsonParser.parseString(value.data, (error, result) => {
+
+    const metar = result.response.data[0]
+    const mappedMetar = mapMetar(metar.METAR[0]);
+    console.log(JSON.stringify(mappedMetar));
+
+    if(error) {
+      console.log(error);
+    }
+
 
   });
 
