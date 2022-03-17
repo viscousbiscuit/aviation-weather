@@ -1,7 +1,8 @@
 version: "3.8"
 services:
   api:
+    image: node:16.8.0
+    restart: always
     build: .
     ports:
       - "3000:3000"
-    image: aviation_weather
