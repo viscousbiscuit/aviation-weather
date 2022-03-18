@@ -4,3 +4,4 @@ export async function multiply(x : number, y : number) {
 }
 
 
+console.log('test');
