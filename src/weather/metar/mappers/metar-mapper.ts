@@ -5,6 +5,13 @@ import { SkyCondition } from "../models/skycondition.js";
 
 export function mapMetar(metar: any) {
 
+  console.log(metar);
+
+  if(!metar) {
+    throw 'You must pass in valid xml';
+  }
+
+
   const nmtr = new Metar();
   if (metar.sky_condition && metar.sky_condition.length) {
       nmtr.SkyConditions = new Array<SkyCondition>();
@@ -25,7 +32,7 @@ export function mapMetar(metar: any) {
   nmtr.MetarType = metar.metar_type[0];
   nmtr.Elevation = parseFloat(metar.elevation_m[0]);
 
-  metar.sky_condition.forEach((v, i) => {
+  metar.sky_condition.forEach((v) => {
 
       const skyCondition = new SkyCondition();
       skyCondition.CloudBaseFtAgl = parseInt(v.$.cloud_base_ft_agl);
