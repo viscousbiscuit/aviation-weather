@@ -1,14 +1,15 @@
 import { Metar } from "../models/metar.js";
 import { SkyCondition } from "../models/skycondition.js";
 
-
-
-export function mapMetar(metar: any) {
-
-  console.log(metar);
+/**
+ * 
+ * @param metar A parsed javascript object from the NOAA xml response.
+ * @returns 
+ */
+export function mapMetar(metar: any) : Metar {  
 
   if(!metar) {
-    throw 'You must pass in valid xml';
+    throw 'You must pass in a valid object';
   }
 
 
