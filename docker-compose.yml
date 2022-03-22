@@ -2,6 +2,7 @@ version: "3.8"
 services:
   api:    
     restart: always
+    image: api
     build: .    
     ports:
       - "3000:3000"
@@ -16,7 +17,7 @@ services:
     ports:
      - '27017:27017'
     volumes:
-      - db:/data
+      - db:/data/db
 volumes:
   api:
   db:

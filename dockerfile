@@ -1,4 +1,4 @@
-FROM node:16.8.0
+FROM node:16.8.0-alpine
 WORKDIR /build/src
 COPY /build/src/ /build/src/
 COPY package*.json /build/src 
