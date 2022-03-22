@@ -1,8 +1,25 @@
 version: "3.8"
 services:
-  api:
-    image: node:16.8.0
+  api:    
     restart: always
-    build: .
+    build: .    
     ports:
       - "3000:3000"
+    links: 
+      - db
+    volumes:
+      - api:/build/src/
+    
+  db:
+    container_name: mongo
+    image: mongo
+    ports:
+     - '27017:27017'
+    volumes:
+      - db:/data
+volumes:
+  api:
+  db:
+
+
+
